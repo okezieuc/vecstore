@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     // TODO: Consider moving the binding of executors elsewhere.
     execution_router.Bind("PING", HandlePing);
     execution_router.Bind("WRITE", HandleWrite);
+    execution_router.Bind("QUERY", HandleQuery);
     // TODO: Allow for the setting of the port from a flag.
     ConnectionManager cm{8000};
     cm.Start();
