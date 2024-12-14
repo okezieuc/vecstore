@@ -133,7 +133,7 @@ void ParseVector(const vector<string> &phrases, Request &parsed_request, int &po
     }
     catch (...)
     {
-        throw std::invalid_argument("All --vector elements must be doubles.");
+        throw std::invalid_argument("All --vector elements must be doubles. An incomplete vector might have been sent.");
     }
     parsed_request.get_vectors_ref().push_back(v);
 

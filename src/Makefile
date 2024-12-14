@@ -2,7 +2,7 @@
 CXX = g++
 
 # Compiler flags
-CXXFLAGS = -Wall -g -pthread -std=c++11
+CXXFLAGS = -Wall -g -pthread -std=c++11 -I.
 
 # Target executable
 TARGET = main.out
@@ -28,7 +28,7 @@ $(TARGET): $(OBJS)
 
 # Rule to run the executable
 run: $(TARGET)
-	./$(TARGET) --vsize 16
+	./$(TARGET) --vsize 3
 
 # Clean rule to remove generated files
 clean:

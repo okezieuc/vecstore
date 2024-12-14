@@ -177,9 +177,21 @@ bool Transcoder::Validate(Request req)
             return false;
     }
 
-    // if vectors_ is defined, then vsize_ and vcount_ must be defined, there must be
-    // exactly vcount_ vectors and each vector must have exactly vsize_ items
-    if (req.get_vectors().size() > 0)
+    // if the command is query, one and only one vector must be included in the request.
+    // and its dimensionality must match the one specified in vsize
+    if (req.get_command() == "QUERY")
+    {
+        if (req.get_vectors().size() != 1)
+            return false;
+        if (req.get_vectors()[0].size() != req.get_vsize())
+            return false;
+    }
+
+    // if vectors_ is defined, then vsize_ and vcount_ must be defined, (unless
+    // the command is QUERY, which its version of this requirement is validated
+    // above). there must be exactly vcount_ many vectors and each vector must
+    // have exactly vsize_ items
+    else if (req.get_vectors().size() > 0)
     {
         int v_count = req.get_vcount();
         if (v_count != req.get_vectors().size())
