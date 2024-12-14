@@ -29,6 +29,10 @@ void ExecutionRouter::Handle(char *req, Client client)
 
     if (this->executor_map.find(command) != this->executor_map.end())
     {
+        // TODO: Handle VS_ERROR_HANDLING_REQUEST errors here
+        // Keep in mind that errors that occur during response
+        // communication with clients might need to be handled
+        // differently.
         executor_map[command](request, client);
     }
     else

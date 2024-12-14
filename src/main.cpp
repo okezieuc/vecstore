@@ -4,14 +4,15 @@
 #include "injector.h"
 
 ExecutionRouter execution_router{};
+Injector injector;
 
 int main(int argc, char *argv[])
 {
-    Injector injector;
     injector.getConfigManager().LoadConfigsFromCommandLineFlags(argc, argv);
 
     // TODO: Consider moving the binding of executors elsewhere.
     execution_router.Bind("PING", HandlePing);
+    execution_router.Bind("WRITE", HandleWrite);
     // TODO: Allow for the setting of the port from a flag.
     ConnectionManager cm{8000};
     cm.Start();

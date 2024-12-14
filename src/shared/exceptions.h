@@ -16,6 +16,11 @@ public:
     {
     }
 
+    Error getError() const
+    {
+        return error;
+    }
+
     // Override the what() method to return our message
     const char *what() const throw()
     {
